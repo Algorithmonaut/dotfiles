@@ -48,9 +48,14 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-
     config = function()
-      require("todo-comments").setup({})
+      require("todo-comments").setup({
+        keywords = {
+          CONF = { icon = "⚙ ", color = "info" },
+          C = { icon = "", color = "hint" },
+        }
+
+      })
     end
   }
 

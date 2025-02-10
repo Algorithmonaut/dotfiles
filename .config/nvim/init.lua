@@ -25,7 +25,7 @@ vim.g.neovide_padding_bottom = 15
 vim.g.neovide_padding_right = 15
 vim.g.neovide_padding_left = 15
 
-vim.o.guifont = "Source Code Pro:h15"
+vim.o.guifont = "Source Code Pro SemiBold:h15"
 
 ---------------
 -- Interface --
