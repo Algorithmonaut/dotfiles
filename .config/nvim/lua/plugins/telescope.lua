@@ -1,69 +1,28 @@
 return {
-	{
-		"nvim-telescope/telescope.nvim",
-		event = "VimEnter",
-		branch = "0.1.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-ui-select.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"davvid/telescope-git-grep.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				-- `cond` is a condition used to determine whether this plugin should be
-				-- installed and loaded.
-				cond = function()
-					return vim.fn.executable("make") == 1
-				end,
-			},
-		},
+  "nvim-telescope/telescope.nvim",
 
-		config = function()
-			require("telescope").setup({
-				defaults = {
-					borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  -- tag = '0.1.8',
+  -- If you have found the undo state you were looking for, you can use <C-cr>
+  -- or <C-r> to revert to that state. If you'd rather not change your whole
+  -- buffer, you can use <cr> to yank the additions of this undo state into
+  -- your default register (use <S-cr> or <C-y> to yank the deletions).
 
-					layout_strategy = "vertical",
-					layout_config = { height = 0.99, width = 0.99 },
-				},
+  dependencies = { "nvim-lua/plenary.nvim", "debugloop/telescope-undo.nvim" },
 
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown(),
-					},
+  config = function()
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Find git files' })
+    vim.keymap.set('n', '<leader>of', builtin.git_files, { desc = 'Old files' })
+    vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
 
-					git_grep = {
-						regex = "fixed", -- unless I know how to use regex
-						skip_binary_files = true,
-					},
-				},
-			})
+    require('telescope').setup({
+      extensions = {
+        undo = {
 
-			pcall(require("telescope").load_extension, "fzf")
-			pcall(require("telescope").load_extension, "ui-select")
-			pcall(require("telescope").load_extension("git_grep"))
+        }
+      }
+    })
 
-			local builtin = require("telescope.builtin")
-			local git_grep = require("git_grep")
-
-			-- Using git
-			vim.keymap.set("n", "<leader>sf", builtin.git_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<leader>sc", git_grep.live_grep, { desc = "[S]earch [C]ontent" })
-			vim.keymap.set("n", "<leader>sw", git_grep.grep, { desc = "[S]earch current [W]ord (or selection)" })
-
-			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
-			vim.keymap.set(
-				"n",
-				"<leader>/",
-				builtin.current_buffer_fuzzy_find,
-				{ desc = "[/] Fuzzily search in current buffer" }
-			)
-			vim.keymap.set("n", "<leader>sn", function()
-				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[S]earch [N]eovim files" })
-		end,
-	},
+    require('telescope').load_extension('undo')
+  end
 }

@@ -1,87 +1,48 @@
 return {
-	--[[
-	{
-		"rcarriga/nvim-notify",
+  "folke/noice.nvim",
+  event = "VeryLazy",
+  opts = {
+    -- add any options here
+  },
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+  },
 
-		config = function()
-			require("notify").setup({
-				render = "simple",
-				stages = "static",
-				timeout = 4000,
-				background_colour = "#000000",
+  config = function()
+    require("noice").setup({
+      -- views = {
+      --   cmdline_popup = {
+      --     border = {
+      --       style = "single",
+      --       -- style = "none",
+      --     },
+      --     filter_options = {},
+      --     win_options = {
+      --       winhighlight = "NormalFloat:FloatBorder",
+      --     },
+      --   },
+      -- },
 
-				on_open = function(win)
-					if vim.api.nvim_win_is_valid(win) then
-						vim.api.nvim_win_set_config(win, { border = "single" })
-					end
-				end,
-			})
-		end,
-	},
-	--]]
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        },
+      },
+      -- you can enable a preset for easier configuration
+      presets = {
+        bottom_search = false,        -- use a classic bottom cmdline for search
+        command_palette = true,       -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = true,            -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false,       -- add a border to hover docs and signature help
+      },
 
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		enabled = true,
-
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			-- "rcarriga/nvim-notify",
-		},
-
-		config = function()
-			require("noice").setup({
-				presets = { inc_rename = true },
-
-				lsp = {
-					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-					override = {
-						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-						["vim.lsp.util.stylize_markdown"] = true,
-						["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-					},
-				},
-
-				messages = {
-					view = "notify", -- default view for messages
-					view_error = "notify", -- view for errors
-					view_warn = "notify", -- view for warnings
-					view_history = "messages", -- view for :messages
-					view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-				},
-
-				routes = {
-					-- {
-					-- 	filter = {
-					-- 		event = "msg_show",
-					-- 		kind = "",
-					-- 		find = "written",
-					-- 	},
-					-- 	opts = { skip = true },
-					-- },
-					{
-						filter = {
-							find = "-- VISUAL --",
-						},
-						opts = { skip = true },
-					},
-					{
-						filter = {
-							find = "Error in decoration provider treesitter/highlighter",
-						},
-						opts = { skip = true },
-					},
-				},
-
-				views = {
-					cmdline_popup = {
-						border = {
-							style = "single",
-						},
-					},
-				},
-			})
-		end,
-	},
+      notify = {
+        enabled = false,
+      },
+    })
+  end
 }

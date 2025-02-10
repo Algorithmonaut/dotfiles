@@ -11,9 +11,10 @@ if status is-interactive
   end
 
 	starship init fish | source
-  enable_transience
-
 	zoxide init fish | source
+
+  # enable_transience
+
 
   # fish_config theme choose rose-pine
   theme_gruvbox dark medium
@@ -26,33 +27,36 @@ if status is-interactive
 
 	abbr --add s sudo
   abbr --add t task; abbr --add task t
-	abbr --add v nvim; abbr --add nvim v 
+	# abbr --add v nvim;
+  abbr --add --set-cursor v 'neovide ./%'
+  
 
   abbr --add b buku --suggest
 	abbr --add l exa
 	abbr --add ll exa -1la
-	abbr --add rm trash-put
+	abbr --add --position anywhere rm trash-put
+  abbr --add  --position anywhere rmf rm 
 
   abbr --add --set-cursor ff 'trans fr:fr "%"'
 	abbr --add --set-cursor ee 'trans en:en "%"'
+  abbr --add --set-cursor eses 'trans es:es "%"'
 	abbr --add --set-cursor fe 'trans fr:en "%"'
 	abbr --add --set-cursor ef 'trans en:fr "%"'
+	abbr --add --set-cursor fes 'trans fr:es "%"'
+	abbr --add --set-cursor esf 'trans es:fr "%"'
+
+  abbr --add vr 'nvim oil-ssh://192.168.1.11/server'
+
+  abbr --add yay 'yay --noconfirm'
 
 
 	fish_vi_key_bindings
 	set fish_cursor_default block # normal & visual mode
 	set fish_cursor_insert block
-	# set fish_cursor_replace_one underscore
-	# set fish_cursor_replace underscore
 end
 
 function fish_greeting
-	# ~/.system/scripts/ufetch
 	nerdfetch
-  # echo -ne "\n"
-  # curl -f 'wttr.in/Orléans?format=%c%C+at+%f'
-  # echo -ne "\n\n"
-  # backup-status.sh
 end
 
 # Created by `pipx` on 2024-05-02 23:15:08
