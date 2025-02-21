@@ -1,0 +1,32 @@
+return {
+  "epwalsh/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
+  lazy = true,
+  ft = "markdown",
+
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "hrsh7th/nvim-cmp",
+    "vim-telescope/telescope.nvim",
+
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "main",
+        path = "~/documents/notes/obsidian/main/",
+      },
+      -- {
+      --   name = "work",
+      --   path = "~/vaults/work",
+      -- },
+    },
+
+    completion = {
+      -- Set to false to disable completion.
+      nvim_cmp = true,
+      -- Trigger completion at 2 chars.
+      min_chars = 2,
+    },
+  },
+}

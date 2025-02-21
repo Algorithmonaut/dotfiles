@@ -8,3 +8,6 @@ if [ "$(readlink setup)" = "docked.conf" ]; then
 else
     ln -sf docked.conf setup
 fi
+
+# NOTE: This is due to a bug, hyprland crashes when re-enabling
+hyprctl dispatch exit

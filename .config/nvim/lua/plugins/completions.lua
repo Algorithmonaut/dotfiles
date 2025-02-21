@@ -1,5 +1,4 @@
 return {
-
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -25,6 +24,10 @@ return {
     -- build = 'nix run .#build-plugin',
 
     opts = {
+      -- enabled = function()
+      --   return vim.bo.filetype ~= 'markdown'
+      -- end,
+
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept

@@ -38,12 +38,17 @@ return {
   {
     -- Autocompletion engine (the window)
     "hrsh7th/nvim-cmp",
+    ft = "markdown",
 
     config = function()
       local cmp = require('cmp')
       require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
+        enabled = function()
+          return vim.bo.filetype == "markdown"
+        end,
+
         snippet = {
           -- Run this function when validating a snippet
           expand = function(args)

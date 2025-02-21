@@ -11,9 +11,12 @@ return {
 
   config = function()
     local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Find git files' })
-    vim.keymap.set('n', '<leader>of', builtin.git_files, { desc = 'Old files' })
-    vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
+    vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Find files in git project' })
+    vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
+    vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = 'Fuzzy search inside buffer' })
+    vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = 'List symbols in current buffer and GD' })
+    vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'List all marks and open on CR' })
+    vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'List jumplist and open on CR' })
 
     require('telescope').setup({
       extensions = {

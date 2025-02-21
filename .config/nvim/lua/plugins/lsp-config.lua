@@ -16,7 +16,7 @@ return {
 
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "clangd", "pyright", "zls" }
+        ensure_installed = { "lua_ls", "clangd", "pyright", "zls", "ts_ls" }
       })
     end
 
@@ -44,6 +44,13 @@ return {
 
       lspconfig.zls.setup({
       })
+
+      lspconfig.taplo.setup({
+      })
+
+      lspconfig.ts_ls.setup({})
+
+      lspconfig.fish_lsp.setup({})
 
       lspconfig.pyright.setup({
         filetypes = { "python" },
