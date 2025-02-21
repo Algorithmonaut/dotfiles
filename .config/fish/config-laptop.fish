@@ -19,4 +19,6 @@ if status is-interactive
     abbr --add --set-cursor ef 'trans en:fr "%"'
     abbr --add --set-cursor fes 'trans fr:es "%"'
     abbr --add --set-cursor esf 'trans es:fr "%"'
+
+    abbr --add vr 'neovide oil-ssh://admin@server//server'
 end

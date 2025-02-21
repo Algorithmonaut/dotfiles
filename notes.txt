@@ -1,3 +1,2 @@
-# Will symlink configs in the current directory reloative to ~
 stow .
 
