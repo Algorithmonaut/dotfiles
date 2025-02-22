@@ -13,7 +13,7 @@
    as a 2D sampler.
    
    See documentation for more details. */
-#request mod bars 
+#request mod bars
 
 /* Window hints */
 #request setfloating  false
@@ -34,8 +34,7 @@
               Has very little performance impact.
     
    "none"   - Disable window opacity completely. */
-// #request setopacity "native"
-#request setopacity "xroot"
+#request setopacity "native"
 
 /* Whether to mirror left and right audio input channels from PulseAudio.*/
 #request setmirror false
@@ -49,11 +48,11 @@
 #request settitle "GLava"
 
 /* Window geometry (x, y, width, height) */
-// #request setgeometry 0 0 800 600
+#request setgeometry 0 0 800 600
 
 /* Window background color (RGB format).
    Does not work with `setopacity "xroot"` */
-// #request setbg 00000000
+#request setbg 00000000
 
 /* (X11 only) EWMH Window type. Possible values are:
    

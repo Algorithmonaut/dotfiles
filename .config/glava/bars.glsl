@@ -2,7 +2,7 @@
 /* Center line thickness (pixels) */
 #define C_LINE 0
 /* Width (in pixels) of each bar */
-#define BAR_WIDTH 30
+#define BAR_WIDTH 60
 /* Width (in pixels) of each bar gap */
 #define BAR_GAP 15
 /* Outline color */
