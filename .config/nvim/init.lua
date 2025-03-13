@@ -28,15 +28,14 @@ vim.g.neovide_padding_left = 15
 vim.o.guifont = "Source Code Pro:h15"
 
 
--- Needed by obsidian plugin
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 3
 
 -- CONF: Interface
 vim.o.mouse = "a" -- enable mouse support
 
 -- CONF: Tabulation
-vim.o.tabstop = 2        -- tabulation width
-vim.o.shiftwidth = 2     -- tabulation width when >> or <<
+vim.o.tabstop = 4        -- tabulation width
+vim.o.shiftwidth = 4     -- tabulation width when >> or <<
 vim.opt.expandtab = true -- convert tabs to spaces
 
 -- CONF: Search
@@ -81,12 +80,12 @@ vim.keymap.set("n", "dd", "", { noremap = true })
 -- CONF: Hightlight on yank
 vim.api.nvim_create_augroup('highlight_yank', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = "Highlight when yanking text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    desc = "Highlight when yanking text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 
-  callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
-  end,
+    callback = function()
+        vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
+    end,
 })
 
 -- CONF: Plugins
@@ -97,29 +96,31 @@ require("config.lazy")
 local diagnostics_visible = true
 
 function ToggleDiagnostics()
-  if diagnostics_visible then
-    vim.diagnostic.enable(false)
-    print("Diagnostics disabled")
-  else
-    vim.diagnostic.enable()
-    print("Diagnostics enabled")
-  end
-  diagnostics_visible = not diagnostics_visible
+    if diagnostics_visible then
+        vim.diagnostic.enable(false)
+        print("Diagnostics disabled")
+    else
+        vim.diagnostic.enable()
+        print("Diagnostics enabled")
+    end
+    diagnostics_visible = not diagnostics_visible
 end
 
 vim.api.nvim_set_keymap('n', '<leader>td', ':lua ToggleDiagnostics()<CR>', { noremap = true, silent = true })
 
 -- Make .h files C files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.h",
-  command = "set filetype=c"
+    pattern = "*.h",
+    command = "set filetype=c"
 })
 
 -- CONF: Hard wrap on norg files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "norg",
-  callback = function()
-    vim.opt_local.textwidth = 80 -- Set text width to 80
-    vim.opt_local.wrap = true    -- Enable line wrapping
-  end,
+    pattern = "norg",
+    callback = function()
+        vim.opt_local.textwidth = 80 -- Set text width to 80
+        vim.opt_local.wrap = true    -- Enable line wrapping
+        vim.opt.colorcolumn = ""
+        vim.o.cursorcolumn = false
+    end,
 })

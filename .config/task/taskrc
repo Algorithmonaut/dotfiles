@@ -57,3 +57,8 @@ report.next.labels=ID,Active,Age,Deps,P,Time,Effort,Project,Tag,Recur,S,Due,Unti
 report.list.columns=id,start.age,entry.age,depends.indicator,priority,time,effort,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,description.count,urgency
 report.list.labels=ID,Active,Age,D,P,Time,Effort,Project,Tags,R,Sch,Due,Until,Description,Urg
 news.version=3.3.0
+
+
+sync.server.origin=http://192.168.1.36:8333
+sync.server.client_id=7fa81a8e-f081-461b-9a13-437ba0039e92
+sync.encryption_secret=4c54a3e4965701438ef84d59e380a949c202b80523cea45b98469150a5e37123

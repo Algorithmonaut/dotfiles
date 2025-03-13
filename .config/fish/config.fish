@@ -1,5 +1,8 @@
 set -x MACHINE (cat ~/.config/fish/machine.txt)
 
+set -x PATH $PATH ~/programming/zig/ ~/programming/zls/zig-out/bin
+
+
 if test "$MACHINE" = laptop
     source ~/.config/fish/config-laptop.fish
 else if test "$MACHINE" = server
@@ -7,6 +10,7 @@ else if test "$MACHINE" = server
 end
 
 if status is-interactive
+
     set -g fish_greeting
 
     starship init fish | source
@@ -31,3 +35,6 @@ end
 function fish_greeting
     nerdfetch
 end
+
+# Created by `pipx` on 2025-03-02 19:45:59
+set PATH $PATH /home/usr/.local/bin

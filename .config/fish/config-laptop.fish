@@ -10,7 +10,8 @@ if status is-interactive
     theme_gruvbox dark medium
 
     abbr --add t task
-    abbr --add --set-cursor v 'neovide ./%'
+    #abbr --add --set-cursor v 'neovide ./%'
+    abbr --add v nvim
 
     abbr --add --set-cursor ff 'trans fr:fr "%"'
     abbr --add --set-cursor ee 'trans en:en "%"'
@@ -35,7 +36,7 @@ set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x HYPRSHOT_DIR "$HOME/documents/screenshots/"
 
 if status is-interactive
-    set -x EDITOR /sbin/neovide
+    set -x EDITOR /sbin/nvim
     set -x DEBUGINFOD_URLS "https://debuginfod.archlinux.org"
     set -x MANPAGER "nvim +Man!"
 
@@ -53,3 +54,7 @@ set -x XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
 set -x GOPATH "$XDG_DATA_HOME/go"
 set -x GTK2_RC_FILES "$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 set -x GTK_IM_MODULE xim
+
+set -Ux __NV_PRIME_RENDER_OFFLOAD 1
+set -Ux __GLX_VENDOR_LIBRARY_NAME nvidia
+set -Ux __VK_LAYER_NV_optimus NVIDIA_only

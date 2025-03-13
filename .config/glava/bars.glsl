@@ -2,15 +2,15 @@
 /* Center line thickness (pixels) */
 #define C_LINE 0
 /* Width (in pixels) of each bar */
-#define BAR_WIDTH 60
+#define BAR_WIDTH 15
 /* Width (in pixels) of each bar gap */
-#define BAR_GAP 15
+#define BAR_GAP 7
 /* Outline color */
 #define BAR_OUTLINE #b57614
 /* Outline width (in pixels, set to 0 to disable outline drawing) */
-#define BAR_OUTLINE_WIDTH 5
+#define BAR_OUTLINE_WIDTH 3
 /* Amplify magnitude of the results each bar displays */
-#define AMPLIFY 600
+#define AMPLIFY 500
 /* Whether the current settings use the alpha channel;
    enabling this is required for alpha to function
    correctly on X11 with `"native"` transparency. */
