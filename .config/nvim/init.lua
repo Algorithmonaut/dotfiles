@@ -5,7 +5,7 @@ vim.o.clipboard = "unnamedplus" -- use system clipboard
 vim.o.undofile = true           -- save undo history
 
 -- CONF: Visual
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "80,100"
 vim.o.termguicolors = true
 vim.o.cursorcolumn = true
 vim.o.cursorline = true
@@ -119,8 +119,19 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "norg",
     callback = function()
         vim.opt_local.textwidth = 80 -- Set text width to 80
-        vim.opt_local.wrap = true    -- Enable line wrapping
+
+        -- Remove 't' from formatoptions to disable auto-wrap in insert mode
+        vim.opt.formatoptions:remove("t")
         vim.opt.colorcolumn = ""
         vim.o.cursorcolumn = false
     end,
+})
+
+vim.diagnostic.config({
+    virtual_text = {
+        prefix  = "●", -- or "", "■", "▎", etc.
+        spacing = 2,
+    },
+    signs        = true,
+    underline    = true,
 })

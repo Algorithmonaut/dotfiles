@@ -1,8 +1,5 @@
 set -x MACHINE (cat ~/.config/fish/machine.txt)
 
-set -x PATH $PATH ~/programming/zig/ ~/programming/zls/zig-out/bin
-
-
 if test "$MACHINE" = laptop
     source ~/.config/fish/config-laptop.fish
 else if test "$MACHINE" = server
@@ -24,6 +21,8 @@ if status is-interactive
     abbr --add ll exa -1la
     abbr --add --position anywhere rm trash-put
     abbr --add --position anywhere rmf rm
+    
+    abbr --add rsync rsync -a --info=progress2 src dest 
 
     abbr --add yay 'yay --noconfirm'
 
@@ -38,3 +37,8 @@ end
 
 # Created by `pipx` on 2025-03-02 19:45:59
 set PATH $PATH /home/usr/.local/bin
+
+set -Ux GRADLE_USER_HOME $HOME/.gradle
+
+# Created by `pipx` on 2025-05-30 14:30:15
+set PATH $PATH /home/user/.local/bin

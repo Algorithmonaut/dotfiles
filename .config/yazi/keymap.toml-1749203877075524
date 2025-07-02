@@ -1,4 +1,4 @@
-[[mgr.prepend_keymap]]
+[[manager.prepend_keymap]]
 on  = [ "<C-n>" ]
 run = '''
   shell 'dragon-drop -T -A -x "$@"' --comfirm --interactive

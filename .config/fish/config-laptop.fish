@@ -1,6 +1,7 @@
 if status is-interactive
     set -x USER_SYSTEM_PATH "$HOME/system/"
     fish_add_path $USER_SYSTEM_PATH/scripts/ -pP
+    fish_add_path $XDG_DATA_HOME/zvm/bin -pP
     fish_add_path $USER_SYSTEM_PATH/apps/ -pP
 
     if test "$TERM" = xterm-kitty
@@ -11,7 +12,8 @@ if status is-interactive
 
     abbr --add t task
     #abbr --add --set-cursor v 'neovide ./%'
-    abbr --add v nvim
+    abbr --add v neovide 
+    abbr --add v 'setsid neovide'
 
     abbr --add --set-cursor ff 'trans fr:fr "%"'
     abbr --add --set-cursor ee 'trans en:en "%"'
@@ -58,3 +60,7 @@ set -x GTK_IM_MODULE xim
 set -Ux __NV_PRIME_RENDER_OFFLOAD 1
 set -Ux __GLX_VENDOR_LIBRARY_NAME nvidia
 set -Ux __VK_LAYER_NV_optimus NVIDIA_only
+
+
+set -x ANDROID_HOME $HOME/Android/Sdk
+set -x PATH $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/tools/bin $ANDROID_HOME/platform-tools $PATH

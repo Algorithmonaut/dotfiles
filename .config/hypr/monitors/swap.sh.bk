@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd "$(dirname "$(realpath "$0")")/conf" || exit
+
+file=$(fzf) || exit
+ln -sf "conf/$file" ../setup
+
+hyprctl reload
+

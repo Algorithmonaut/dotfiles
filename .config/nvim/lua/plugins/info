@@ -1,0 +1,844 @@
+return {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+}
+-- https://github.com/brenoprata10/nvim-highlight-colors
+return {
+	"NvChad/nvim-colorizer.lua",
+
+	opts = {
+		filetypes = { "*" },
+		user_default_options = {
+			RGB = false, -- #RGB hex codes
+			RRGGBB = true, -- #RRGGBB hex codes
+			names = false, -- "Name" codes like Blue or blue
+			RRGGBBAA = true, -- #RRGGBBAA hex codes
+			AARRGGBB = true, -- 0xAARRGGBB hex codes
+			rgb_fn = false, -- CSS rgb() and rgba() functions
+			hsl_fn = false, -- CSS hsl() and hsla() functions
+			css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+			-- Available modes for `mode`: foreground, background,  virtualtext
+			mode = "virtualtext", -- Set the display mode.
+			-- Available methods are false / true / "normal" / "lsp" / "both"
+			-- True is same as normal
+			tailwind = false, -- Enable tailwind colors
+			-- parsers can contain values used in |user_default_options|
+			sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+			-- virtualtext = "■",
+			-- virtualtext = "●︎",
+			virtualtext = "",
+
+			-- update color values even if buffer is not focused
+			-- example use: cmp_menu, cmp_docs
+			always_update = true,
+		},
+		-- all the sub-options of filetypes apply to buftypes
+		buftypes = {},
+	},
+}
+return {
+  -- {
+  --   "f4z3r/gruvbox-material.nvim",
+  --   name = "gruvbox-material",
+  --   lazy = false,
+  --   priority = 1000,
+  --
+  --   config = function()
+  --     require("gruvbox-material").setup({
+  --       italics = true, -- enable italics in general
+  --       contrast = "medium",
+  --       comments = {
+  --         italics = true, -- enable italic comments
+  --       },
+  --       background = {
+  --         transparent = false, -- use terminal background
+  --       },
+  --       float = {
+  --         force_background = false, -- force background on floats even when background.transparent is set
+  --         background_color = nil,   -- set color for float backgrounds. If nil, uses the default color set by the color scheme
+  --       },
+  --     })
+  --   end,
+  -- }
+
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = function()
+      vim.o.background = "dark" -- or "light" for light mode
+      vim.cmd([[colorscheme gruvbox]])
+    end
+  }
+
+}
+return {
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
+  {
+    'saghen/blink.cmp',
+    -- optional: provides snippets for the snippet source
+    dependencies = 'rafamadriz/friendly-snippets',
+
+    -- use a release tag to download pre-built binaries
+    version = '*',
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
+
+    opts = {
+      -- enabled = function()
+      --   return vim.bo.filetype ~= 'markdown'
+      -- end,
+
+      -- 'default' for mappings similar to built-in completion
+      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+      -- See the full "keymap" documentation for information on defining your own keymap.
+      keymap = { preset = "default" },
+
+      appearance = {
+        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+        -- Useful for when your theme doesn't support blink.cmp
+        -- Will be removed in a future release
+        use_nvim_cmp_as_default = true,
+        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = 'normal'
+      },
+
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      sources = {
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+
+      },
+    },
+    opts_extend = { "sources.default" }
+  }
+}
+-- MRU: most recently used
+
+return {
+  'goolord/alpha-nvim',
+  dependencies = { 'echasnovski/mini.icons' },
+
+  config = function()
+    require('alpha').setup(require('alpha.themes.startify').config)
+  end
+}
+-- See :lspinfo for current filetype
+
+return {
+  'stevearc/conform.nvim',
+  opts = {},
+
+  config = function()
+    require("conform").setup({
+      formatters_by_ft = {
+        lua = { "stylua" },
+        c = { "clang-format" },
+        python = { "isort", "black" }, -- isort sorts imports
+        zig = { "zls" }
+
+
+      },
+
+      format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_format = "fallback",
+      }
+    })
+  end
+}
+-- :h vim.lsp.buf: list of options to use for LSPs
+
+return {
+    {
+        -- Easily install languages LSPs
+        "williamboman/mason.nvim",
+
+        config = function()
+            require("mason").setup()
+        end
+    },
+
+    {
+        -- Bridges Mason and LSPconfig, e.g. ensure installed
+        "williamboman/mason-lspconfig.nvim",
+
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "lua_ls", "clangd", "pyright", "ts_ls" }
+            })
+        end
+
+    },
+
+    {
+        -- Allows nvim to communicate with LSPs
+        "neovim/nvim-lspconfig",
+        -- dependencies = { "saghen/blink.cmp" },
+
+        config = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.lua_ls.setup({
+                settings = {
+                    Lua = {
+                        workspace = {
+                            library = { "~/programming/" }
+                        }
+                    }
+                }
+            })
+
+            lspconfig.clangd.setup({
+            })
+
+            lspconfig.zls.setup({
+                cmd = { 'zls' }
+            })
+
+            lspconfig.taplo.setup({
+            })
+
+            lspconfig.ts_ls.setup({})
+
+            lspconfig.fish_lsp.setup({})
+
+            lspconfig.pyright.setup({
+                filetypes = { "python" },
+
+                settings = {
+                    python = {
+                        formatting = {
+                            indentSize = 2, -- Number of spaces for indentation
+                            tabSize = 2,    -- Number of spaces per tab
+                        },
+                    },
+                },
+            })
+
+            local opts = { noremap = true, silent = true }
+
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+            -- vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+            -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            -- Setup code actions, check video for telescope integration
+        end
+
+    }
+}
+return {
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons", "folke/noice.nvim" },
+
+  config = function()
+    local function show_macro_recording()
+      local register = vim.fn.reg_recording()
+      if register ~= "" then
+        return "@" .. register
+      end
+    end
+
+    require("lualine").setup({
+      options = {
+        icons_enabled = true,
+        theme = "gruvbox-material",
+        section_separators = "",
+        component_separators = "",
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 10,
+          tabline = 100,
+          winbar = 100,
+        },
+      },
+      sections = {
+        lualine_a = {
+          { "mode" },
+          {
+            "macro-recording",
+            fmt = show_macro_recording,
+          },
+        },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
+        lualine_x = { "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
+    })
+  end,
+}
+return {
+
+	{
+		"jinh0/eyeliner.nvim",
+		config = function()
+			require("eyeliner").setup({
+				highlight_on_key = true,
+				dim = true,
+			})
+		end,
+	},
+
+	{
+		"ggandor/flit.nvim",
+		enabled = false, -- NOTE: disabled
+		dependencies = { "ggandor/leap.nvim" },
+
+		config = function()
+			require("flit").setup({
+				labeled_modes = "nv",
+				multiline = true,
+			})
+		end,
+	},
+
+	{
+		"ggandor/leap.nvim",
+		dependencies = { "tpope/vim-repeat" },
+
+		config = function()
+			require("leap").create_default_mappings()
+		end,
+	},
+}
+return {
+    {
+        "3rd/image.nvim",
+        build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+        lazy = false,
+        opts = {}
+    },
+
+    {
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- add options here
+            -- or leave it empty to use the default settings
+        },
+        keys = {
+            -- suggested keymap
+            { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+        },
+    },
+
+    {
+        "nvim-neorg/neorg",
+
+        dependencies = { 'benlubas/neorg-interim-ls', '3rd/image.nvim' }, -- , '/3rd/image.nvim' },
+        lazy = false,                                                     -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+        version = "*",                                                    -- Pin Neorg to the latest stable release
+
+        config = function()
+            vim.api.nvim_create_autocmd("Filetype", {
+                pattern = "norg",
+                callback = function()
+                    -- WARN: { buffer = true }) prevents command to apply to non-norg buffers
+                end
+            })
+
+            require("neorg").setup({
+                load = {
+                    ["core.defaults"] = {},
+                    ["core.concealer"] = {}, -- We added this line!
+                    ["core.dirman"] = {
+                        config = {
+                            workspaces = {
+                                doc = "~/documents/notes/norg/documentation/",
+                                ren = "~/documents/notes/norg/software-renderer/",
+                            },
+                        },
+                    },
+                    ["core.latex.renderer"] = {
+                        -- render_on_enter = true,
+                        scale = 1,
+
+                    },
+                    ["external.interim-ls"] = {
+                        config = {
+                            -- default config shown
+                            completion_provider = {
+                                -- Enable or disable the completion provider
+                                enable = true,
+
+                                -- Show file contents as documentation when you complete a file name
+                                documentation = true,
+
+                                -- Try to complete categories provided by Neorg Query. Requires `benlubas/neorg-query`
+                                categories = false,
+
+                                -- suggest heading completions from the given file for `{@x|}` where `|` is your cursor
+                                -- and `x` is an alphanumeric character. `{@name}` expands to `[name]{:$/people:# name}`
+                                -- people = {
+                                --   enable = false,
+
+                                -- path to the file you're like to use with the `{@x` syntax, relative to the
+                                -- workspace root, without the `.norg` at the end.
+                                -- ie. `folder/people` results in searching `$/folder/people.norg` for headings.
+                                -- Note that this will change with your workspace, so it fails silently if the file
+                                -- doesn't exist
+                                -- path = "people",
+                                -- }
+                            }
+                        }
+                    },
+                    ["core.completion"] = {
+                        config = { engine = { module_name = "external.lsp-completion" } },
+                    },
+
+                }
+            })
+        end,
+    },
+
+}
+return {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+        -- add any options here
+    },
+    dependencies = {
+        "MunifTanjim/nui.nvim",
+    },
+
+    config = function()
+        require("noice").setup({
+            -- views = {
+            --   cmdline_popup = {
+            --     border = {
+            --       style = "single",
+            --       -- style = "none",
+            --     },
+            --     filter_options = {},
+            --     win_options = {
+            --       winhighlight = "NormalFloat:FloatBorder",
+            --     },
+            --   },
+            -- },
+
+            lsp = {
+                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                },
+            },
+            -- you can enable a preset for easier configuration
+            presets = {
+                bottom_search = false, -- use a classic bottom cmdline for search
+                command_palette = true, -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                inc_rename = true,    -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = false, -- add a border to hover docs and signature help
+            },
+
+            notify = {
+                enabled = false,
+            },
+        })
+    end
+}
+return {
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  config = function()
+    local configs = require("nvim-treesitter.configs")
+
+    vim.filetype.add({
+      pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+    })
+
+    configs.setup({
+      ensure_installed = { "c", "lua", "vimdoc", "hyprlang" },
+      sync_install = false,
+      highlight = { enable = true },
+      indent = { enable = true },
+    })
+  end
+}
+return {
+  {
+    -- nvim-cmp source for LSP completions
+    "hrsh7th/cmp-nvim-lsp",
+
+    config = function()
+      require 'cmp'.setup {
+        sources = {
+          { name = 'nvim_lsp' }
+        }
+      }
+
+      -- Moved to lsp-config
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    end
+  },
+
+  {
+    -- Snippet engine (source of snippets and snippet expansion tool)
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      -- Luasnip completion source for nvim-cmp
+      "saadparwaiz1/cmp_luasnip",
+      -- Collection of VScode snippets loaded by luanip
+      "rafamadriz/friendly-snippets"
+    },
+  },
+
+  -- {
+  --   -- Collection of VScode snippets loaded by luanip
+  --   "rafamadriz/friendly-snippets",
+  --   -- follow latest release.
+  --   version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+  --   -- install jsregexp (optional!).
+  --   build = "make install_jsregexp"
+  -- },
+
+  {
+    -- Autocompletion engine (the window)
+    "hrsh7th/nvim-cmp",
+    ft = "markdown",
+
+    config = function()
+      local cmp = require('cmp')
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      cmp.setup({
+        enabled = function()
+          return vim.bo.filetype == "markdown"
+        end,
+
+        snippet = {
+          -- Run this function when validating a snippet
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+          end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Set `select` to `false` to only confirm explicitly selected items.
+        }),
+        sources = cmp.config.sources({
+          -- { name = 'nvim_lsp' },
+          -- { name = 'vsnip' }, -- For vsnip users.
+          { name = 'luasnip' },
+          -- { name = 'ultisnips' }, -- For ultisnips users.
+          -- { name = 'snippy' }, -- For snippy users.
+        }, {
+          { name = 'buffer' },
+        })
+      })
+    end
+  }
+}
+return {
+  "epwalsh/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
+  lazy = true,
+  ft = "markdown",
+
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "hrsh7th/nvim-cmp",
+    "vim-telescope/telescope.nvim",
+
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "main",
+        path = "~/documents/notes/obsidian/main/",
+      },
+      -- {
+      --   name = "work",
+      --   path = "~/vaults/work",
+      -- },
+    },
+
+    completion = {
+      -- Set to false to disable completion.
+      nvim_cmp = true,
+      -- Trigger completion at 2 chars.
+      min_chars = 2,
+    },
+  },
+}
+return {
+  'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  opts = {},
+  -- Optional dependencies
+  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+
+  config = function()
+    require("oil").setup({})
+    vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+  end,
+}
+return {
+    {
+        "mawkler/modicator.nvim",
+
+        config = function()
+            require("modicator").setup({})
+        end,
+    },
+
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
+
+            vim.keymap.set("n", "<leader>rn", ":IncRename ")
+        end,
+    },
+
+    -- {
+    --   'mvllow/modes.nvim',
+    --   -- tag = 'v0.2.1',
+    --
+    --   config = function()
+    --     require('modes').setup({
+    --       colors = {
+    --         bg = "#000000", -- Optional bg param, defaults to Normal hl group
+    --         -- copy = "#f5c359",
+    --         -- delete = "#c75c6a",
+    --         insert = "#",
+    --         visual = "#504945",
+    --         -- Default background color: bg2
+    --
+    --       },
+    --
+    --       line_opacity = 1,
+    --
+    --     })
+    --   end
+    -- }
+
+    -- "svampkorg/moody.nvim",
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        config = function()
+            require("todo-comments").setup({
+                keywords = {
+                    CONF = { icon = "⚙ ", color = "info" },
+                    C = { icon = "", color = "hint" },
+                    P = { icon = "󰋃", color = "test" },
+                }
+
+            })
+        end
+    }
+
+
+    -- {
+    -- 	"numToStr/Comment.nvim",
+    -- 	lazy = false,
+    --
+    -- 	opts = {
+    -- 		---Add a space b/w comment and the line
+    -- 		padding = true,
+    -- 		---Whether the cursor should stay at its position
+    -- 		sticky = true,
+    -- 		---Lines to be ignored while (un)comment
+    -- 		ignore = nil,
+    -- 		---LHS of toggle mappings in NORMAL mode
+    -- 		toggler = {
+    -- 			---Line-comment toggle keymap
+    -- 			line = "gcc",
+    -- 			---Block-comment toggle keymap
+    -- 			block = "gbc",
+    -- 		},
+    -- 		---LHS of operator-pending mappings in NORMAL and VISUAL mode
+    -- 		opleader = {
+    -- 			---Line-comment keymap
+    -- 			line = "gc",
+    -- 			---Block-comment keymap
+    -- 			block = "gb",
+    -- 		},
+    -- 		---LHS of extra mappings
+    -- 		extra = {
+    -- 			---Add comment on the line above
+    -- 			above = "gcO",
+    -- 			---Add comment on the line below
+    -- 			below = "gco",
+    -- 			---Add comment at the end of line
+    -- 			eol = "gcA",
+    -- 		},
+    -- 		---Enable keybindings
+    -- 		---NOTE: If given `false` then the plugin won't create any mappings
+    -- 		mappings = {
+    -- 			---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+    -- 			basic = true,
+    -- 			---Extra mapping; `gco`, `gcO`, `gcA`
+    -- 			extra = true,
+    -- 		},
+    -- 	},
+    -- },
+}
+return {
+  "folke/snacks.nvim",
+  priority = 1000,
+  lazy = false,
+  ---@type snacks.Config
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    picker = { enabled = true },
+    notifier = { enabled = true },
+    quickfile = { enabled = true },
+    -- scroll = { enabled = true },
+    statuscolumn = { enabled = true },
+    -- words = { enabled = true },
+    words = { enabled = false },
+  },
+
+  keys = {
+    { "<leader>z", function() Snacks.zen() end,            desc = "Toggle Zen Mode" },
+    -- { "<leader>Z", function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+    { "<leader>.", function() Snacks.scratch() end,        desc = "Toggle Scratch Buffer" },
+    { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+  }
+}
+return {
+  "nvim-telescope/telescope.nvim",
+
+  -- tag = '0.1.8',
+  -- If you have found the undo state you were looking for, you can use <C-cr>
+  -- or <C-r> to revert to that state. If you'd rather not change your whole
+  -- buffer, you can use <cr> to yank the additions of this undo state into
+  -- your default register (use <S-cr> or <C-y> to yank the deletions).
+
+  dependencies = { "nvim-lua/plenary.nvim", "debugloop/telescope-undo.nvim" },
+
+  config = function()
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Find files in git project' })
+    vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
+    vim.keymap.set('n', '<leader>fi', builtin.current_buffer_fuzzy_find, { desc = 'Fuzzy search inside buffer' })
+    vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = 'List symbols in current buffer and GD' })
+    vim.keymap.set('n', '<leader>fm', builtin.marks, { desc = 'List all marks and open on CR' })
+    vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'List jumplist and open on CR' })
+
+    require('telescope').setup({
+      extensions = {
+        undo = {
+
+        }
+      }
+    })
+
+    require('telescope').load_extension('undo')
+  end
+}
+return {
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+
+	init = function()
+		-- the UI will show up after the timeout
+		vim.o.timeout = true
+		vim.o.timeoutlen = 400
+
+		require("which-key").setup({
+			show_help = false, -- show a help message in the command line for using WhichKey
+			show_keys = false, -- show the currently pressed key and its label as a message in the command line
+
+			win = {
+				border = "single", -- none, single, double, shadow
+				position = "bottom", -- bottom, top
+				margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+				padding = { 1, 0, 1, 0 }, -- extra window padding [top, right, bottom, left]
+				winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+				zindex = 1000, -- positive value to position WhichKey above other floating windows.
+			},
+
+			layout = {
+				height = { min = 4, max = 25 }, -- min and max height of the columns
+				width = { min = 20, max = 50 }, -- min and max width of the columns
+				spacing = 3, -- spacing between columns
+				align = "left", -- align columns left, center or right
+			},
+		})
+
+		require("which-key").add({
+			{ "", desc = "<leader>p_", hidden = true },
+			{ "", group = "[t]oggle" },
+			{ "", desc = "<leader>t_", hidden = true },
+			{ "", desc = "<leader>s_", hidden = true },
+			{ "", group = "[s]earch" },
+			{ "", group = "[p]review" },
+		})
+	end,
+}
