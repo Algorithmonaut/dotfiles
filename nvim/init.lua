@@ -116,9 +116,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 -- CONF: Hard wrap on norg files
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "norg",
+    pattern = { "norg", "markdown" },
     callback = function()
-        vim.opt_local.textwidth = 80 -- Set text width to 80
+        vim.opt_local.textwidth = 100 -- Set text width to 80
 
         -- Remove 't' from formatoptions to disable auto-wrap in insert mode
         vim.opt.formatoptions:remove("t")
