@@ -7,6 +7,8 @@ set -x WINEPREFIX "$HOME/.wine"
 
 # CONF: Other variables
 set -x HYPRSHOT_DIR "$HOME/documents/screenshots/"
+set -x XCOMPOSEFILE "$XDG_CONFIG_HOME/X11/xcompose"
+set -x WINEPREFIX "$XDG_DATA_HOME/wine"
 
 
 
@@ -32,3 +34,4 @@ set -x XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
 set -x GOPATH "$XDG_DATA_HOME/go"
 set -x GTK2_RC_FILES "$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 set -x GTK_IM_MODULE xim
+

@@ -67,6 +67,12 @@
     }
   }
 
+  #zen-media-controls-toolbar .toolbarbutton-icon {
+    fill: #ebdbb2 !important; /* Gruvbox foreground */
+    color: #ebdbb2 !important;
+  }
+
+
   toolbar .toolbarbutton-1 {
     &:not([disabled]) {
       &:is([open], [checked])

@@ -17,8 +17,8 @@ if status is-interactive
     abbr --add s sudo
     abbr --add t task
 
-    abbr --add l exa
-    abbr --add ll exa -1la
+    abbr --add l eza
+    abbr --add ll eza -1Umlah
     abbr --add --position anywhere rm trash-put
     abbr --add --position anywhere rmf rm
     
@@ -29,6 +29,8 @@ if status is-interactive
     fish_vi_key_bindings
     set fish_cursor_default block # normal & visual mode
     set fish_cursor_insert block
+
+    alias wget 'wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 end
 
 function fish_greeting
