@@ -24,7 +24,13 @@ if status is-interactive
     abbr --add --set-cursor esf 'trans es:fr "%"'
     abbr --add se "s -p google"
 
+    abbr --add tether "adb shell svc usb setFunctions rndis"
+    
+    abbr --add drop "dragon-drop -x"
+
     abbr --add vr 'neovide oil-ssh://admin@server//server'
+
+    abbr --add mdhtml 'wl-paste | pandoc -f markdown -t html -s | wl-copy'
 end
 
 # CONF: Environment variables

@@ -1,19 +1,26 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export ABBR_TIPS_PROMPT:\x5cn\U0001f4a1\x20\x5ce\x5b1m\x7b\x7b\x20\x2eabbr\x20\x7d\x7d\x5ce\x5b0m\x20\x3d\x3e\x20\x7b\x7b\x20\x2ecmd\x20\x7d\x7d
+SETUVAR --export ABBR_TIPS_REGEXES:\x28\x5e\x28\x5cw\x2b\x5cs\x2b\x29\x2b\x28\x2d\x7b1\x2c2\x7d\x29\x5cw\x2b\x29\x28\x5cs\x5cS\x2b\x29\x1e\x28\x5e\x28\x5cs\x3f\x28\x5cw\x2d\x3f\x29\x2b\x29\x7b3\x7d\x29\x2e\x2a\x1e\x28\x5e\x28\x5cs\x3f\x28\x5cw\x2d\x3f\x29\x2b\x29\x7b2\x7d\x29\x2e\x2a\x1e\x28\x5e\x28\x5cs\x3f\x28\x5cw\x2d\x3f\x29\x2b\x29\x7b1\x7d\x29\x2e\x2a
 SETUVAR --export ANDROID_SDK_ROOT:/opt/android\x2dsdk
+SETUVAR --path DXVK_STATE_CACHE_PATH:/mnt/ext4\x2dexternal\x2dnvme/games/dxvk\x2dcache
+SETUVAR --export EDITOR:/sbin/nvim
 SETUVAR --export FLUTTER_HOME:/opt/flutter
 SETUVAR --export FZF_DEFAULT_OPTS:\x0a\x20\x20\x2d\x2dcolor\x20fg\x3a\x23ebdbb2\x2cbg\x3a\x23282828\x2chl\x3a\x23fabd2f\x2cfg\x2b\x3a\x23ebdbb2\x2cbg\x2b\x3a\x233c3836\x2chl\x2b\x3a\x23fabd2f\x0a\x20\x20\x2d\x2dcolor\x20info\x3a\x2383a598\x2cprompt\x3a\x23bdae93\x2cspinner\x3a\x23fabd2f\x2cpointer\x3a\x2383a598\x2cmarker\x3a\x23fe8019\x2cheader\x3a\x23665c54
 SETUVAR --export GRADLE_USER_HOME:/home/user/\x2egradle
 SETUVAR --export MACHINE:laptop
 SETUVAR --export --path PATH:/home/usr/\x2elocal/share/nvim/mason/bin\x1e/home/usr/system/apps\x1e/home/usr/system/scripts\x1e/sbin\x1e/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/sbin\x1e/usr/bin\x1e/var/lib/flatpak/exports/bin\x1e/usr/lib/jvm/default/bin\x1e/usr/bin/site_perl\x1e/usr/bin/vendor_perl\x1e/usr/bin/core_perl\x1e/home/usr/path/to/zig
 SETUVAR --export TERMINAL:/sbin/kitty
+SETUVAR --export __ABBR_TIPS_KEYS:v\x1eff\x1eee\x1eeses\x1efe\x1eef\x1efes\x1eesf\x1ese\x1etether\x1edrop\x1evr\x1emdhtml\x1es\x1et\x1el\x1ell\x1erm\x1ermf\x1ersync\x1eyay\x1ea__hibernate\x1ea__shot\x1ea__ssh\x1ea__wget\x1ea__z\x1ea__zi
+SETUVAR --export __ABBR_TIPS_VALUES:setsid\x20neovide\x1etrans\x20fr\x3afr\x20\x22\x25\x22\x1etrans\x20en\x3aen\x20\x22\x25\x22\x1etrans\x20es\x3aes\x20\x22\x25\x22\x1etrans\x20fr\x3aen\x20\x22\x25\x22\x1etrans\x20en\x3afr\x20\x22\x25\x22\x1etrans\x20fr\x3aes\x20\x22\x25\x22\x1etrans\x20es\x3afr\x20\x22\x25\x22\x1es\x20\x2dp\x20google\x1eadb\x20shell\x20svc\x20usb\x20setFunctions\x20rndis\x1edragon\x2ddrop\x20\x2dx\x1eneovide\x20oil\x2dssh\x3a//admin\x40server//server\x1ewl\x2dpaste\x20\x7c\x20pandoc\x20\x2df\x20markdown\x20\x2dt\x20html\x20\x2ds\x20\x7c\x20wl\x2dcopy\x1esudo\x1etask\x1eeza\x1eeza\x20\x2d1Umlah\x1etrash\x2dput\x1erm\x1ersync\x20\x2da\x20\x2d\x2dinfo\x3dprogress2\x20src\x20dest\x1eyay\x20\x2d\x2dnoconfirm\x1esystemctl\x20hibernate\x1emaim\x20\x2ds\x20\x7c\x20xclip\x20\x2dselection\x20clipboard\x20\x2dt\x20image/png\x1ekitten\x20ssh\x1ewget\x20\x2d\x2dhsts\x2dfile\x3d\x22\x24XDG_DATA_HOME/wget\x2dhsts\x22\x1e__zoxide_z\x1e__zoxide_zi
 SETUVAR --export __GLX_VENDOR_LIBRARY_NAME:nvidia
 SETUVAR --export __NV_PRIME_RENDER_OFFLOAD:1
 SETUVAR --export __VK_LAYER_NV_optimus:NVIDIA_only
 SETUVAR __fish_initialized:3800
+SETUVAR _fisher_gazorby_2F_fish_2D_abbreviation_2D_tips_files:\x7e/\x2econfig/fish/functions/__abbr_tips_bind_newline\x2efish\x1e\x7e/\x2econfig/fish/functions/__abbr_tips_bind_space\x2efish\x1e\x7e/\x2econfig/fish/functions/__abbr_tips_clean\x2efish\x1e\x7e/\x2econfig/fish/functions/__abbr_tips_init\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/abbr_tips\x2efish
 SETUVAR _fisher_jomik_2F_fish_2D_gruvbox_files:\x7e/\x2econfig/fish/functions/theme_gruvbox\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejomik/fish\x2dgruvbox
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejomik/fish\x2dgruvbox\x1egazorby/fish\x2dabbreviation\x2dtips
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:6c7086
 SETUVAR fish_color_cancel:f38ba8
@@ -53,3 +60,4 @@ SETUVAR fish_pager_color_secondary_prefix:\x1d
 SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR --export fish_user_paths:/opt/flutter/bin\x1e/opt/android\x2dsdk/platform\x2dtools\x1e/opt/android\x2dsdk/cmdline\x2dtools/latest/bin
+SETUVAR server_state:up

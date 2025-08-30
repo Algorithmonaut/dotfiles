@@ -46,6 +46,11 @@ return {
                 cmd = { 'zls' }
             })
 
+            lspconfig.fish_lsp.setup({
+                cmd = { 'fish-lsp', "start" },
+                filetypes = { "fish" },
+            })
+
             lspconfig.taplo.setup({
             })
 

@@ -10,9 +10,7 @@ if status is-interactive
 
     set -g fish_greeting
 
-    starship init fish | source
     zoxide init fish | source
-
 
     abbr --add s sudo
     abbr --add t task
@@ -31,6 +29,8 @@ if status is-interactive
     set fish_cursor_insert block
 
     alias wget 'wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+
+    starship init fish | source
 end
 
 function fish_greeting
@@ -44,3 +44,5 @@ set -Ux GRADLE_USER_HOME $HOME/.gradle
 
 # Created by `pipx` on 2025-05-30 14:30:15
 set PATH $PATH /home/user/.local/bin
+
+

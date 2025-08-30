@@ -1,0 +1,13 @@
+[pyprland]
+plugins = [
+  "scratchpads",
+]
+
+[scratchpads.chatgpt]
+animation = "fromTop"
+command = "chromium --ozone-platform=wayland --app=https://chat.openai.com/ --user-data-dir=$HOME/.local/share/chatgpt-chromium"
+class = "chrome-chat.openai.com__-Default"  # check: hyprctl clients | grep class
+size = "40% 80%"
+# max_size = "1920px 100%"
+margin = 50
+

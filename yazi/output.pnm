@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN "
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="SEIKO EPSON">
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">
+var path = location.href;
+var Ret;
+Ret = path.indexOf("/PRESENTATION/HTML/TOP/INDEX.HTML", 0);
+if (-1 < Ret) {
+} else {
+Ret = path.indexOf("PRESENTATION",0);
+if (-1 < Ret) {
+document.write("<meta http-equiv = 'refresh' content='0; URL= ./HTML/TOP/INDEX.HTML'>");
+} else {
+document.write("<meta http-equiv = 'refresh' content='0; URL= ./PRESENTATION/HTML/TOP/INDEX.HTML'>");
+}
+}
+</script>
+</head>
+<body><noscript>Enable the browser's JavaScript setting.</noscript></body></HTML><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN "
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="SEIKO EPSON">
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript">
+var path = location.href;
+var Ret;
+Ret = path.indexOf("/PRESENTATION/HTML/TOP/INDEX.HTML", 0);
+if (-1 < Ret) {
+} else {
+Ret = path.indexOf("PRESENTATION",0);
+if (-1 < Ret) {
+document.write("<meta http-equiv = 'refresh' content='0; URL= ./HTML/TOP/INDEX.HTML'>");
+} else {
+document.write("<meta http-equiv = 'refresh' content='0; URL= ./PRESENTATION/HTML/TOP/INDEX.HTML'>");
+}
+}
+</script>
+</head>
+<body><noscript>Enable the browser's JavaScript setting.</noscript></body></HTML>

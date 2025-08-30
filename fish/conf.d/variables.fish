@@ -3,12 +3,10 @@ set -x XDG_DATA_HOME "$HOME/.local/share"
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_STATE_HOME "$HOME/.local/state"
 set -x XDG_CACHE_HOME "$HOME/.cache"
-set -x WINEPREFIX "$HOME/.wine"
 
 # CONF: Other variables
 set -x HYPRSHOT_DIR "$HOME/documents/screenshots/"
 set -x XCOMPOSEFILE "$XDG_CONFIG_HOME/X11/xcompose"
-set -x WINEPREFIX "$XDG_DATA_HOME/wine"
 
 
 
